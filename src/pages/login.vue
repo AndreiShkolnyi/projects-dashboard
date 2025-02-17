@@ -9,6 +9,11 @@ const formData = ref({
   password: '',
 })
 
+watchDebounced(formData, () => handleLoginForm(formData.value), {
+  debounce: 1000,
+  deep: true,
+})
+
 const signIn = async () => {
   const { error } = await loginUser(formData.value)
   if (!error) return router.push('/')
@@ -37,14 +42,9 @@ const signIn = async () => {
               type="email"
               placeholder="johndoe19@example.com"
               :class="{ 'border-red-500': serverError }"
-              @input="handleLoginForm(formData)"
               required
             />
-            <ul class="text-sm text-left text-red-500" v-if="streamErrors?.email?.length">
-              <li v-for="error in streamErrors.email" :key="error" class="list-disc">
-                {{ error }}
-              </li>
-            </ul>
+            <FormErrorsList v-if="streamErrors?.email?.length" :errors="streamErrors?.email"/>
           </div>
           <div class="grid gap-2">
             <div class="flex items-center">
@@ -56,19 +56,12 @@ const signIn = async () => {
               id="password"
               type="password"
               :class="{ 'border-red-500': serverError }"
-              @input="handleLoginForm(formData)"
               autocomplete
               required
             />
-            <ul class="text-sm text-left text-red-500" v-if="streamErrors?.password?.length">
-              <li v-for="error in streamErrors.password" :key="error" class="list-disc">
-                {{ error }}
-              </li>
-            </ul>
+            <FormErrorsList v-if="streamErrors?.password?.length" :errors="streamErrors?.password"/>
           </div>
-          <ul class="text-sm text-left text-red-500" v-if="serverError">
-            <li class="list-disc">{{ serverError }}</li>
-          </ul>
+          <FormErrorsList v-if="serverError" :errors="[serverError]"/>
           <Button type="submit" class="w-full"> Login </Button>
         </form>
         <div class="mt-4 text-sm text-center">
