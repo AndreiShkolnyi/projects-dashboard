@@ -9,7 +9,11 @@
     <TableRow>
       <TableHead> Description </TableHead>
       <TableCell>
-        {{ project.description }}
+        <AppInPlaceEditTextArea
+          class="h-20"
+          v-model="project.description"
+          @commit="updateProject"
+        />
       </TableCell>
     </TableRow>
     <TableRow>
@@ -23,9 +27,13 @@
       <TableCell>
         <div class="flex">
           <Avatar class="-mr-4 border border-primary hover:scale-110 transition-transform"
-            v-for="collaborator in project.collaborators" :key="collaborator">
-            <RouterLink class="w-full h-full flex items-center justify-center" to="">
-              <AvatarImage src="" alt="" />
+          v-for="collab in collabs"
+          :key="collab.id">
+            <RouterLink class="w-full h-full flex items-center justify-center" :to="{
+                name: '/users/[username]',
+                params: { username: collab.username }
+              }">
+               <AvatarImage :src="collab.avatar_url || ''" alt="" />
               <AvatarFallback> </AvatarFallback>
             </RouterLink>
           </Avatar>
@@ -48,12 +56,17 @@
           </TableHeader>
           <TableBody>
             <TableRow v-for="task in project.tasks" :key="task.id">
-              <TableCell>
-                <RouterLink class="hover:text-blue-400" :to="`/tasks/${task.id}`">{{
-                  task.name
-                  }}</RouterLink>
+              <TableCell class="p-0">
+                <RouterLink
+                  class="text-left block hover:bg-muted p-4"
+                  :to="{ name: '/tasks/[id]', params: { id: task.id } }"
+                >
+                  {{ task.name }}
+                </RouterLink>
               </TableCell>
-              <TableCell> {{ task.status }} </TableCell>
+              <TableCell>
+                <AppInPlaceEditStatus readonly :modelValue="task.status" />
+              </TableCell>
               <TableCell> {{ task.due_date }} </TableCell>
             </TableRow>
           </TableBody>
@@ -100,6 +113,11 @@ watch(
 )
 
 await getProject(slug)
+
+const { getProfilesByIds } = useCollabs()
+const collabs = project.value?.collaborators
+  ? await getProfilesByIds(project.value?.collaborators)
+  : []
 </script>
 
 <style>

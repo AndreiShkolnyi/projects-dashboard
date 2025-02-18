@@ -8,20 +8,29 @@
         ></Icon>
         <Input class="w-full pl-8 bg-background" type="text" placeholder="Search ..." />
       </form>
-      <DropdownMenu>
+      <DropdownMenu v-if="profile">
         <DropdownMenuTrigger>
           <Avatar>
-            <AvatarImage src="https://github.com/radix-vue.png" alt="@radix-vue" />
+            <AvatarImage
+            :src="profile.avatar_url || ''"
+            :alt="`${profile.full_name} profile picture`"
+          />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuItem>Subscription</DropdownMenuItem>
+          <DropdownMenuItem>
+          <RouterLink
+            :to="{
+              name: '/profile',
+            }"
+            class="w-full h-full"
+          >
+            Profile
+          </RouterLink>
+        </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </nav>
@@ -29,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
+const { profile } = storeToRefs(useAuthStore())
 </script>
 
 <style scoped>

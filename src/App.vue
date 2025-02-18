@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AuthLayout from './layouts/auth-layout.vue'
 
 const errorStore = useErrorStore()
 onMounted(() => {
@@ -9,10 +8,18 @@ onMounted(() => {
 onErrorCaptured((error) => {
   errorStore.setError({ error })
 })
+
+const { user } = storeToRefs(useAuthStore())
+const AuthLayout = defineAsyncComponent(
+  () => import('./layouts/auth-layout.vue')
+)
+const GuestLayout = defineAsyncComponent(
+  () => import('./layouts/guset-layout.vue')
+)
 </script>
 
 <template>
-  <AuthLayout>
+  <Component :is="user ? AuthLayout : GuestLayout">
     <AppErrorPage v-if="errorStore.activeError" />
     <RouterView v-else v-slot="{ Component, route }">
       <Suspense v-if="Component">
@@ -20,5 +27,5 @@ onErrorCaptured((error) => {
         <template #fallback></template>
       </Suspense>
     </RouterView>
-  </AuthLayout>
+  </Component>
 </template>

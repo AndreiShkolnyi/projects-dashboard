@@ -9,7 +9,7 @@ create table
     created_at timestamp with time zone default now() not null,
     name text not null,
     slug text unique not null,
-    description text not null,
+    description text not null default '',,
     status current_status default 'in-progress' not null,
     collaborators text[] default array[]::text[] not null
   );

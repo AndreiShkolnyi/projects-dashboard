@@ -20,8 +20,9 @@
 import type { Tables } from 'database/types';
 import { profileQuery } from '@/utils/supabaseQueries'
 
-
 const { username } = useRoute('/users/[username]').params
+
+usePageStore().pageData.title = ''
 
 const profile = ref<Tables<'profiles'> | null>(null)
 

@@ -1,32 +1,25 @@
 <template>
   <div>
-    <DataTable v-if="tasks" :data="tasks" :columns="columns">
-      <template #cell-name="{ cell }">
-        <RouterLink class="hover:text-blue-400" :to="`/tasks/${cell.row.original.id}`">{{
-          cell.getValue()
-        }}</RouterLink>
-      </template>
-    </DataTable>
+    <DataTable v-if="tasks" :columns="columnsWithCollabs" :data="tasks" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useErrorStore } from '@/stores/error'
-import { taskWithProjectsQuery, type TasksWithProjects } from '@/utils/supabaseQueries'
+import { useTasksStore } from '@/stores/loaders/tasks'
 import { columns } from '@/utils/tableColumns/tasksColumns'
 
 usePageStore().pageData.title = 'Tasks'
 
-const tasks = ref<TasksWithProjects | null>(null)
+const tasksLoader = useTasksStore()
+const { tasks } = storeToRefs(tasksLoader)
+const { getTasks } = tasksLoader
 
-const getTask = async () => {
-  const { data, error, status } = await taskWithProjectsQuery
+await getTasks()
 
-  if (error) useErrorStore().setError({ error, customCode: status })
-  else tasks.value = data
-}
+const { getGroupedCollabs, groupedCollabs } = useCollabs()
 
-await getTask()
+getGroupedCollabs(tasks.value ?? [])
+const columnsWithCollabs = columns(groupedCollabs)
 </script>
 
 <style scoped></style>
