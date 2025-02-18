@@ -1,9 +1,13 @@
 import type { LoginForm } from '@/types/AuthForm'
 import type { AuthError } from '@supabase/supabase-js'
 
-export const useFormErrors = () => {
+type FormErrors<T> = {
+  [K in keyof T]: string[]
+}
+
+export const useFormErrors = <T>() => {
   const serverError = ref('')
-  const streamErrors = ref<Record<string, string[]> | null>(null)
+  const streamErrors = ref<FormErrors<T> | null>(null)
 
   const handleServerError = (error: AuthError) => {
     serverError.value =

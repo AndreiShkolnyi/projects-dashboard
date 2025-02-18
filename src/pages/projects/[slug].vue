@@ -2,7 +2,9 @@
   <Table v-if="project">
     <TableRow>
       <TableHead> Name </TableHead>
-      <TableCell> {{ project.name }} </TableCell>
+      <TableCell>
+        <AppInPlaceEditText v-model="project.name" @commit="updateProject" />
+      </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Description </TableHead>
@@ -12,17 +14,16 @@
     </TableRow>
     <TableRow>
       <TableHead> Status </TableHead>
-      <TableCell>{{ project.status }}</TableCell>
+      <TableCell>
+        <AppInPlaceEditStatus v-model="project.status" @commit="updateProject" />
+      </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Collaborators </TableHead>
       <TableCell>
         <div class="flex">
-          <Avatar
-            class="-mr-4 border border-primary hover:scale-110 transition-transform"
-            v-for="collaborator in project.collaborators"
-            :key="collaborator"
-          >
+          <Avatar class="-mr-4 border border-primary hover:scale-110 transition-transform"
+            v-for="collaborator in project.collaborators" :key="collaborator">
             <RouterLink class="w-full h-full flex items-center justify-center" to="">
               <AvatarImage src="" alt="" />
               <AvatarFallback> </AvatarFallback>
@@ -47,11 +48,11 @@
           </TableHeader>
           <TableBody>
             <TableRow v-for="task in project.tasks" :key="task.id">
-              <TableCell
-                ><RouterLink class="hover:text-blue-400" :to="`/tasks/${task.id}`">{{
+              <TableCell>
+                <RouterLink class="hover:text-blue-400" :to="`/tasks/${task.id}`">{{
                   task.name
-                }}</RouterLink></TableCell
-              >
+                  }}</RouterLink>
+              </TableCell>
               <TableCell> {{ task.status }} </TableCell>
               <TableCell> {{ task.due_date }} </TableCell>
             </TableRow>
@@ -85,27 +86,20 @@
 </template>
 
 <script setup lang="ts">
-import { useErrorStore } from '@/stores/error'
-import { projectQuery } from '@/utils/supabaseQueries'
-import type { Project } from '@/utils/supabaseQueries'
+import { useProjectsStore } from '@/stores/loaders/projects'
 
-const route = useRoute('/projects/[slug]')
+const { slug } = useRoute('/projects/[slug]').params
 
-const project = ref<Project | null>(null)
+const projectsLoader = useProjectsStore()
+const { project } = storeToRefs(projectsLoader)
+const { getProject, updateProject } = projectsLoader
 
 watch(
   () => project.value?.name,
   () => (usePageStore().pageData.title = `Project: ${project.value?.name || ''}`),
 )
 
-const getProject = async () => {
-  const { data, error, status } = await projectQuery(route.params.slug)
-
-  if (error) useErrorStore().setError({ error, customCode: status })
-  else project.value = data
-}
-
-await getProject()
+await getProject(slug)
 </script>
 
 <style>

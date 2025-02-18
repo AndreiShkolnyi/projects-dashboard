@@ -7,7 +7,7 @@
       class="nav-link"
     >
       <Icon :icon="link.icon" />
-      <span class="hidden lg:block text-nowrap">{{ link.title }}</span>
+      <span class="text-nowrap" :class="isCollapsed ? 'hidden' : 'block'">{{ link.title }}</span>
     </RouterLink>
 
     <Button
@@ -18,7 +18,7 @@
       @click="emit('on-click', link.title)"
     >
       <Icon :icon="link.icon" />
-      <span class="hidden lg:block text-nowrap">{{ link.title }}</span>
+      <span class="text-nowrap" :class="isCollapsed ? 'hidden' : 'block'">{{ link.title }}</span>
     </Button>
   </template>
 </template>
@@ -31,7 +31,7 @@ interface LinkProps {
   to: string
   icon: string
 }
-defineProps<{ links: LinkProps[] }>()
+defineProps<{ links: LinkProps[], isCollapsed: boolean }>()
 
 const emit = defineEmits<{
   (event: 'on-click', type: string): void
@@ -40,6 +40,6 @@ const emit = defineEmits<{
 
 <style scoped>
 .nav-link {
-  @apply flex items-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground;
+  @apply flex items-center gap-3 px-4 py-2 mx-2 w-fit transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground;
 }
 </style>
