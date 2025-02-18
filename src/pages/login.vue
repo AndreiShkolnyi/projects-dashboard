@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { LoginForm } from '@/types/AuthForm'
 import { loginUser } from '@/utils/supabaseAuth'
 
 const router = useRouter()
-const { serverError, streamErrors, handleServerError, handleLoginForm } = useFormErrors()
+const { serverError, streamErrors, handleServerError, handleLoginForm } = useFormErrors<LoginForm>()
 
 const formData = ref({
   email: '',

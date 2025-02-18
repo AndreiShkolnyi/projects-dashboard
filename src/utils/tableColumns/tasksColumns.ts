@@ -16,7 +16,7 @@ export const columns = (collabs: Ref<GroupedCollabs>): ColumnDef<TasksWithProjec
         RouterLink,
         {
           to: `/tasks/${row.original.id}`,
-          class: 'text-left font-medium hover:bg-muted block w-full hover:text-blue-500',
+          class: 'text-left font-medium block w-full hover:text-blue-500',
         },
         () => row.getValue('name'),
       )

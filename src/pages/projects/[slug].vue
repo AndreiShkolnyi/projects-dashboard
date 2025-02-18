@@ -100,6 +100,7 @@
 
 <script setup lang="ts">
 import { useProjectsStore } from '@/stores/loaders/projects'
+import type { BreadCrumb } from '@/types/BreadCrumb'
 
 const { slug } = useRoute('/projects/[slug]').params
 
@@ -110,6 +111,15 @@ useHead({
     { property: 'og:title', content: 'Project Info' }
   ]
 })
+
+const breadCrumbs: BreadCrumb[] = [
+  { title: 'Home', to: '/' },
+  { title: 'Projects', to: '/projects' },
+  { title: slug || '', to: `/projects/${slug}` },
+]
+
+useBreadcrumbStore().setBreadcrumbs(breadCrumbs)
+
 
 const projectsLoader = useProjectsStore()
 const { project } = storeToRefs(projectsLoader)

@@ -82,6 +82,7 @@
 
 <script setup lang="ts">
 import { useTasksStore } from '@/stores/loaders/tasks'
+import type { BreadCrumb } from '@/types/BreadCrumb'
 
 const { id } = useRoute('/tasks/[id]').params
 
@@ -96,6 +97,15 @@ useHead({
 const tasksLoader = useTasksStore()
 const { task } = storeToRefs(tasksLoader)
 const { getTask, updateTask, deleteTask } = tasksLoader
+
+
+const breadCrumbs: BreadCrumb[] = [
+  { title: 'Home', to: '/' },
+  { title: 'Tasks', to: '/tasks' },
+  { title: id || '', to: `/tasks/${id}` },
+]
+
+useBreadcrumbStore().setBreadcrumbs(breadCrumbs)
 
 watch(
   () => task.value?.name,

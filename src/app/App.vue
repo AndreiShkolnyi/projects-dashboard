@@ -11,10 +11,10 @@ onErrorCaptured((error) => {
 
 const { user } = storeToRefs(useAuthStore())
 const AuthLayout = defineAsyncComponent(
-  () => import('./layouts/AuthLayout.vue')
+  () => import('../layouts/AuthLayout.vue')
 )
 const GuestLayout = defineAsyncComponent(
-  () => import('./layouts/GuestLayout.vue')
+  () => import('../layouts/GuestLayout.vue')
 )
 
 useHead({
@@ -27,11 +27,11 @@ useHead({
 </script>
 
 <template>
-  <Transition name="fade" mode="out-in">
+  <!-- <Transition name="fade" mode="out-in"> -->
     <Component :is="user ? AuthLayout : GuestLayout" :key="user?.id">
       <AppErrorPage v-if="errorStore.activeError" />
       <RouterView v-else v-slot="{ Component, route }">
-        <Transition name="fade" mode="out-in">
+        <!-- <Transition name="fade" mode="out-in"> -->
           <div class="w-full" :key="route.path">
             <Suspense v-if="Component">
           <Component :is="Component" :key="route.name"></Component>
@@ -47,8 +47,8 @@ useHead({
               </template>
         </Suspense>
           </div>
-        </Transition>
+        <!-- </Transition> -->
       </RouterView>
     </Component>
-  </Transition>
+  <!-- </Transition> -->
 </template>

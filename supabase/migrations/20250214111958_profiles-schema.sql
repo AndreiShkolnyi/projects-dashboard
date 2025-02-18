@@ -7,9 +7,9 @@ create table
     created_at timestamp with time zone default now() not null,
     username text unique not null,
     full_name text not null,
-    bio text default null,
+    bio text default ''::text null,
     mode text default 'dark' not null,
-    avatar_url text default null,
+    avatar_url text default ''::text null,
 
     primary key (id)
   );

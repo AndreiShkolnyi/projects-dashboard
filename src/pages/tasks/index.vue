@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { useTasksStore } from '@/stores/loaders/tasks'
+import type { BreadCrumb } from '@/types/BreadCrumb'
 import { columns } from '@/utils/tableColumns/tasksColumns'
 
 
@@ -22,6 +23,14 @@ usePageStore().pageData.title = 'Tasks'
 const tasksLoader = useTasksStore()
 const { tasks } = storeToRefs(tasksLoader)
 const { getTasks } = tasksLoader
+
+const breadCrumbs: BreadCrumb[] = [
+  { title: 'Home', to: '/' },
+  { title: 'Tasks', to: '/tasks' },
+
+]
+
+useBreadcrumbStore().setBreadcrumbs(breadCrumbs)
 
 await getTasks()
 

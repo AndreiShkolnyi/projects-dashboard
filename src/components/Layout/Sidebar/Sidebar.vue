@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="flex flex-col h-screen gap-2 border-r fixed bg-muted/40 transition-[width]"
+    class="flex flex-col h-screen gap-2 border-r fixed bg-muted/40 transition-[width] duration-200"
     :class="{ 'w-52': isOpen, 'w-24': !isOpen }"
   >
     <div class="flex h-fit items-center border-b p-2 lg:p-4 shrink-0 gap-1 justify-between" :class="{ 'flex-col': !isOpen }">
@@ -59,7 +59,7 @@ const accountLinks = computed(() => {
 })
 
 const executeAction = async (type: string) => {
-  if (type === 'Sign out') {
+  if (type === 'Sign Out') {
     const { logoutUser } = await import('@/utils/supabaseAuth')
     const isLoggedOut = await logoutUser()
     if (isLoggedOut) return router.push('/login')

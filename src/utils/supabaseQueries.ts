@@ -11,9 +11,43 @@ export const taskWithProjectsQuery = supabase.from('tasks').select(`
   )
   `)
 
-export type TasksWithProjects = QueryData<typeof taskWithProjectsQuery>
+  export const resentTasksWithProjectsQuery = supabase
+    .from('tasks')
+    .select(
+      `
+      id,
+      status,
+      name
+      ,
+    projects (
+      id,
+      name,
+      slug
+    )
+    `,
+    )
+    .order('created_at', { ascending: false })
+    .limit(5)
 
-export const projectsQuery = supabase.from('projects').select()
+  export type ResentTasksWithProjects = QueryData<typeof resentTasksWithProjectsQuery>
+
+  export type TasksWithProjects = QueryData<typeof taskWithProjectsQuery>
+
+  export const projectsQuery = supabase.from('projects').select()
+
+  export const resentProjectsQuery = supabase
+    .from('projects')
+    .select(
+      `
+      slug,
+    status,
+    name
+    `,
+    )
+    .order('created_at', { ascending: false })
+    .limit(5)
+
+  export type ResentProjects = QueryData<typeof resentProjectsQuery>
 
 export type Projects = QueryData<typeof projectsQuery>
 
