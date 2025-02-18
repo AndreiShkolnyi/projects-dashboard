@@ -1,6 +1,6 @@
 <template>
   <div>
-      <DataTable v-if="projects.length" :columns="columnsWithCollabs" :data="projects" />
+      <DataTable v-if="projects" :columns="columnsWithCollabs" :data="projects" />
   </div>
 </template>
 
@@ -8,6 +8,15 @@
 import { useCollabs } from '@/composables/collabs';
 import { useProjectsStore } from '@/stores/loaders/projects';
 import { columns } from '@/utils/tableColumns/projectsColumns'
+
+
+useHead({
+  title: 'Projects Dashboard',
+  meta: [
+    { name: 'description', content: 'This is your personal projects dashboard' },
+    { property: 'og:title', content: 'Projects Dashboard' }
+  ]
+})
 
 usePageStore().pageData.title = 'Projects'
 

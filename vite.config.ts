@@ -22,6 +22,9 @@ export default defineConfig({
         {
           pinia: ['defineStore', 'storeToRefs', 'acceptHMRUpdate'],
         },
+        {
+          '@vueuse/head': ['useHead', 'createHead'],
+        },
       ],
       dts: true,
       vueTemplate: true,

@@ -103,6 +103,14 @@ import { useProjectsStore } from '@/stores/loaders/projects'
 
 const { slug } = useRoute('/projects/[slug]').params
 
+useHead({
+  title: 'Project Info',
+  meta: [
+    { name: 'description', content: 'Selected project info' },
+    { property: 'og:title', content: 'Project Info' }
+  ]
+})
+
 const projectsLoader = useProjectsStore()
 const { project } = storeToRefs(projectsLoader)
 const { getProject, updateProject } = projectsLoader

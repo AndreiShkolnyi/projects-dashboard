@@ -85,6 +85,14 @@ import { useTasksStore } from '@/stores/loaders/tasks'
 
 const { id } = useRoute('/tasks/[id]').params
 
+useHead({
+  title: 'Task Info',
+  meta: [
+    { name: 'description', content: 'Selected tasks info' },
+    { property: 'og:title', content: 'Task Info' }
+  ]
+})
+
 const tasksLoader = useTasksStore()
 const { task } = storeToRefs(tasksLoader)
 const { getTask, updateTask, deleteTask } = tasksLoader

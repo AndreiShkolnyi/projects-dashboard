@@ -4,42 +4,52 @@
       v-if="link.to"
       :to="link.to"
       exact-active-class="text-primary bg-muted"
-      class="nav-link"
+      class="flex nav-link"
+        :class="{ 'justify-normal': isOpen, 'justify-center': !isOpen }"
     >
       <Icon :icon="link.icon" />
-      <span class="text-nowrap" :class="isCollapsed ? 'hidden' : 'block'">{{ link.title }}</span>
+      <span
+        class="text-nowrap"
+        :class="{ block: isOpen, hidden: !isOpen }"
+        >{{ link.title }}</span
+      >
     </RouterLink>
 
     <Button
       v-else
       :variant="null"
       size="default"
-      class="nav-link"
+      class="inline-block nav-link"
+      :class="{ 'justify-normal': isOpen, 'justify-center': !isOpen }"
       @click="emit('on-click', link.title)"
     >
       <Icon :icon="link.icon" />
-      <span class="text-nowrap" :class="isCollapsed ? 'hidden' : 'block'">{{ link.title }}</span>
+      <span
+        class="text-nowrap"
+        :class="{ block: isOpen, hidden: !isOpen }"
+        >{{ link.title }}</span
+      >
     </Button>
   </template>
 </template>
 
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-
 interface LinkProps {
   title: string
   to: string
   icon: string
 }
-defineProps<{ links: LinkProps[], isCollapsed: boolean }>()
+
+defineProps<{ links: LinkProps[], isOpen: boolean }>()
 
 const emit = defineEmits<{
   (event: 'on-click', type: string): void
 }>()
+
 </script>
 
 <style scoped>
 .nav-link {
-  @apply flex items-center gap-3 px-4 py-2 mx-2 w-fit transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground;
-}
+  @apply items-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary text-muted-foreground;
+  }
 </style>

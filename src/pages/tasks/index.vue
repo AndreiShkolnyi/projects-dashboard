@@ -8,6 +8,15 @@
 import { useTasksStore } from '@/stores/loaders/tasks'
 import { columns } from '@/utils/tableColumns/tasksColumns'
 
+
+useHead({
+  title: 'Tasks Dashboard',
+  meta: [
+    { name: 'description', content: 'This is your personal tasks dashboard' },
+    { property: 'og:title', content: 'Tasks Dashboard' }
+  ]
+})
+
 usePageStore().pageData.title = 'Tasks'
 
 const tasksLoader = useTasksStore()

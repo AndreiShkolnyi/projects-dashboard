@@ -1,10 +1,10 @@
 <template>
   <aside
-    class="flex flex-col h-screen gap-2 border-r fixed !z-[9999] transition-[width]"
-    :class="isCollapsed ? 'w-16': 'w-52'"
+    class="flex flex-col h-screen gap-2 border-r fixed bg-muted/40 transition-[width]"
+    :class="{ 'w-52': isOpen, 'w-24': !isOpen }"
   >
-    <div class="flex h-fit items-center border-b p-2 lg:p-4 shrink-0 gap-1 justify-between" :class="{ 'flex-col': isCollapsed }">
-      <Button variant="outline" size="icon" class="w-8 h-8" @click="isCollapsed = !isCollapsed">
+    <div class="flex h-fit items-center border-b p-2 lg:p-4 shrink-0 gap-1 justify-between" :class="{ 'flex-col': !isOpen }">
+      <Button variant="outline" size="icon" class="w-8 h-8" @click="emit('onToggle', !isOpen)">
         <Icon icon="lucide:menu"></Icon>
       </Button>
       <DropdownMenu>
@@ -24,19 +24,19 @@
 
     <nav class="flex flex-col gap-2 justify-between h-full relative">
       <div>
-        <SidebarLinks :links="sidebarNavigateLinks" @on-click="executeAction" :isCollapsed />
+        <SidebarLinks :links="sidebarNavigateLinks" @on-click="executeAction" :isOpen />
       </div>
 
       <div class="border-y text-center bg-background py-3">
-        <SidebarLinks :links="accountLinks" @on-click="executeAction" :isCollapsed />
+        <SidebarLinks :links="accountLinks" @on-click="executeAction" :isOpen />
       </div>
     </nav>
   </aside>
 </template>
 
 <script setup lang="ts">
+const props = defineProps<{ isOpen: boolean }>()
 const router = useRouter()
-const isCollapsed = ref(false)
 
 const sidebarNavigateLinks = [
   { title: 'Dashboard', to: '/', icon: 'lucide:house' },
@@ -66,8 +66,19 @@ const executeAction = async (type: string) => {
   }
 }
 
-defineEmits(['taskClicked'])
+const emit = defineEmits(['taskClicked', 'onToggle'])
 
+const windowWidth = useWindowSize().width
+watch(
+  () => windowWidth.value,
+  (newWidth) => {
+    const shouldOpen = newWidth > 1024
+    if (shouldOpen !== props.isOpen) {
+      emit('onToggle', shouldOpen)
+      console.log('from watcher', shouldOpen)
+    }
+  }
+)
 
 </script>
 
