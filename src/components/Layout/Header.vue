@@ -9,7 +9,7 @@
         <Input class="w-full pl-8 bg-background" type="text" placeholder="Search ..." />
       </form>
       <div class="flex justify-center items-center gap-1">
-      <Button @click="toggleDark()" class="w-8 h-8">
+      <Button variant="ghost" @click="toggleDark()" class="w-8 h-8">
         <Transition name="scale" mode="out-in">
           <Icon v-if="isDark" icon="lucide:sun"></Icon>
           <Icon v-else icon="lucide:moon"></Icon>

@@ -53,7 +53,7 @@ export const columns = (collabs: Ref<GroupedCollabs>): ColumnDef<TasksWithProjec
           to: `/projects/${row.original.projects?.slug}`,
           class: 'text-left font-medium hover:bg-muted block w-full hover:text-blue-500',
         },
-        1,
+        () => row.original.projects?.name,
       )
     },
   },

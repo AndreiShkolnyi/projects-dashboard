@@ -19,8 +19,8 @@
       v-else
       :variant="null"
       size="default"
-      class="inline-block nav-link"
-      :class="{ 'justify-normal': isOpen, 'justify-center': !isOpen }"
+      class="inline-flex nav-link"
+      :class="{ 'justify-normal w-full': isOpen, 'justify-center': !isOpen }"
       @click="emit('on-click', link.title)"
     >
       <Icon :icon="link.icon" />

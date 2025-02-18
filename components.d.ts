@@ -46,6 +46,7 @@ declare module 'vue' {
     Icon: typeof import('@iconify/vue')['Icon']
     Input: typeof import('./src/components/ui/input/Input.vue')['default']
     Label: typeof import('./src/components/ui/label/Label.vue')['default']
+    NavigationList: typeof import('./src/widgets/Sidebar/ui/NavigationList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Separator: typeof import('./src/components/ui/separator/Separator.vue')['default']
@@ -58,6 +59,7 @@ declare module 'vue' {
     SheetTitle: typeof import('./src/components/ui/sheet/SheetTitle.vue')['default']
     SheetTrigger: typeof import('./src/components/ui/sheet/SheetTrigger.vue')['default']
     Sidebar: typeof import('./src/components/Layout/Sidebar/Sidebar.vue')['default']
+    SidebarItem: typeof import('./src/widgets/Sidebar/ui/SidebarItem.vue')['default']
     SidebarLinks: typeof import('./src/components/Layout/Sidebar/SidebarLinks.vue')['default']
     Table: typeof import('./src/components/ui/table/Table.vue')['default']
     TableBody: typeof import('./src/components/ui/table/TableBody.vue')['default']
@@ -68,5 +70,6 @@ declare module 'vue' {
     TableHead: typeof import('./src/components/ui/table/TableHead.vue')['default']
     TableHeader: typeof import('./src/components/ui/table/TableHeader.vue')['default']
     TableRow: typeof import('./src/components/ui/table/TableRow.vue')['default']
+    UserAvatar: typeof import('./src/widgets/Header/ui/UserAvatar.vue')['default']
   }
 }

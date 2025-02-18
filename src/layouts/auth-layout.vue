@@ -12,7 +12,8 @@ const toggleMenu = (value: boolean) => {
 </script>
 
 <template>
- <Sidebar @taskClicked="taskSheetOpen = true" :isOpen="isOpen || false" @onToggle="toggleMenu" />
+<div class="w-full">
+  <Sidebar @taskClicked="taskSheetOpen = true" :isOpen="isOpen || false" @onToggle="toggleMenu" />
  <AppNewTask v-model="taskSheetOpen" />
  <div
     class="flex flex-col transition-[margin]"
@@ -26,4 +27,5 @@ const toggleMenu = (value: boolean) => {
       <slot />
     </main>
   </div>
+</div>
 </template>

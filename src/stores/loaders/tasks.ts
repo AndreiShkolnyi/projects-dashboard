@@ -18,12 +18,12 @@ export const useTasksStore = defineStore('tasks-store', () => {
   interface ValidateCacheParams {
     ref: typeof tasks | typeof task
     query: typeof taskWithProjectsQuery | typeof taskQuery
-    key: number
+    key: string
     loaderFn: typeof loadTasks | typeof loadTask
   }
   const validateCache = ({ ref, query, key, loaderFn }: ValidateCacheParams) => {
     if (ref.value) {
-      const finalQuery = typeof query === 'function' ? query(key) : query
+      const finalQuery = typeof query === 'function' ? query(+key) : query
       finalQuery.then(({ data, error }) => {
         if (JSON.stringify(ref.value) === JSON.stringify(data)) {
           return
@@ -48,7 +48,7 @@ export const useTasksStore = defineStore('tasks-store', () => {
   }
   const getTask = async (id: string) => {
     task.value = null
-    const { data, error, status } = await loadTask(id)
+    const { data, error, status } = await loadTask(+id)
     if (error) useErrorStore().setError({ error, customCode: status })
     if (data) task.value = data
     validateCache({
