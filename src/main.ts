@@ -1,5 +1,4 @@
 import '@/assets/index.css'
-import 'iconify-icon'
 
 import { createApp } from 'vue'
 import { plugin } from '@formkit/vue'

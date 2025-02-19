@@ -384,7 +384,6 @@ declare module 'vue' {
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useAuthStore: UnwrapRef<typeof import('./src/stores/auth')['useAuthStore']>
     readonly useBreadcrumbStore: UnwrapRef<typeof import('./src/stores/breadcrumbs')['useBreadcrumbStore']>
-    readonly useChatAi: UnwrapRef<typeof import('./src/composables/useChatApi')['useChatAi']>
     readonly useCollabs: UnwrapRef<typeof import('./src/composables/collabs')['useCollabs']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>

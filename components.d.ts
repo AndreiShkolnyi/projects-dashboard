@@ -33,9 +33,6 @@ declare module 'vue' {
     CardFooter: typeof import('./src/components/ui/card/CardFooter.vue')['default']
     CardHeader: typeof import('./src/components/ui/card/CardHeader.vue')['default']
     CardTitle: typeof import('./src/components/ui/card/CardTitle.vue')['default']
-    ChatBox: typeof import('./src/components/ChatBot/ChatBox.vue')['default']
-    ChatBubble: typeof import('./src/components/ChatBot/ChatBubble.vue')['default']
-    ChatWidget: typeof import('./src/components/ChatBot/ChatWidget.vue')['default']
     DataTable: typeof import('./src/components/ui/data-table/DataTable.vue')['default']
     DropdownMenu: typeof import('./src/components/ui/dropdown-menu/DropdownMenu.vue')['default']
     DropdownMenuCheckboxItem: typeof import('./src/components/ui/dropdown-menu/DropdownMenuCheckboxItem.vue')['default']
@@ -55,7 +52,6 @@ declare module 'vue' {
     FormErrorsList: typeof import('./src/components/FormErrorsList/FormErrorsList.vue')['default']
     Header: typeof import('./src/components/Layout/Header.vue')['default']
     Icon: typeof import('@iconify/vue')['Icon']
-    IconChat: typeof import('./src/components/ChatBot/IconChat.vue')['default']
     Input: typeof import('./src/components/ui/input/Input.vue')['default']
     Label: typeof import('./src/components/ui/label/Label.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -71,7 +67,6 @@ declare module 'vue' {
     SheetTrigger: typeof import('./src/components/ui/sheet/SheetTrigger.vue')['default']
     Sidebar: typeof import('./src/components/Layout/Sidebar/Sidebar.vue')['default']
     SidebarLinks: typeof import('./src/components/Layout/Sidebar/SidebarLinks.vue')['default']
-    SocialMediaPostGenerator: typeof import('./src/components/ChatBot/SocialMediaPostGenerator.vue')['default']
     Table: typeof import('./src/components/ui/table/Table.vue')['default']
     TableBody: typeof import('./src/components/ui/table/TableBody.vue')['default']
     TableCaption: typeof import('./src/components/ui/table/TableCaption.vue')['default']
@@ -81,7 +76,5 @@ declare module 'vue' {
     TableHead: typeof import('./src/components/ui/table/TableHead.vue')['default']
     TableHeader: typeof import('./src/components/ui/table/TableHeader.vue')['default']
     TableRow: typeof import('./src/components/ui/table/TableRow.vue')['default']
-    TemperatureSelector: typeof import('./src/components/ChatBot/TemperatureSelector.vue')['default']
-    UrlForm: typeof import('./src/components/ChatBot/UrlForm.vue')['default']
   }
 }

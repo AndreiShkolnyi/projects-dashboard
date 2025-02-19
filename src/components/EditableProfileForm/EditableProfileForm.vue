@@ -1,6 +1,7 @@
 <!-- eslint-disable vue/no-mutating-props -->
 <script setup lang="ts">
 import type { Tables } from 'database/types';
+import { useToggle } from '@vueuse/core'
 
 interface FormData {
   full_name: string
@@ -8,17 +9,20 @@ interface FormData {
   bio: string
 }
 
-const { profile } = defineProps<{ profile: Tables<'profiles'> | null, isEditable: boolean }>()
+const isEditable = ref(false)
+const toggle = useToggle(isEditable)
+
+const { profile } = defineProps<{ profile: Tables<'profiles'> | null }>()
 
 const _profile = ref({ ...profile })
-const editProfile = (formData: FormData) => formData
-const emit = defineEmits<{
-  (e: 'toggle', value: boolean): void
-}>()
-
+const editProfile = (formData: FormData) => {
+  console.log(formData)
+  toggle(false)
+}
 </script>
 <template>
-  <div class="flex flex-col items-center justify-center pb-4">
+  <div class="flex flex-col items-center justify-center pb-4 relative">
+    <Button v-if="isEditable" class="absolute -right-4 -top-4 bg-red-400" variant="ghost" @click="toggle(false)">Discard changes</Button>
     <Avatar size="lg">
       <AvatarImage :src="profile?.avatar_url || ''" alt="@radix-vue" />
       <AvatarFallback>{{ profile?.username }}</AvatarFallback>
@@ -42,7 +46,7 @@ const emit = defineEmits<{
       <p class="mt-2 text-gray-500">{{ `@${profile?.username}` }}</p>
       <h1 class="mt-5 text-4xl font-bold">{{ profile?.full_name }}</h1>
       <p class="mt-2 text-sm">{{ profile?.bio }}</p>
-      <Button @click="emit('toggle', true)">Edit profile</Button>
+      <Button @click="toggle(true)">Edit profile</Button>
     </template>
   </div>
 </template>

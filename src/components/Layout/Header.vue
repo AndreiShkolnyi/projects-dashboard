@@ -43,8 +43,7 @@
             <DropdownMenuItem>
               <RouterLink
                 :to="{
-                  name: '/users/[username]',
-                  params: { username: profile.username }
+                  name: '/profile/',
                 }"
                 class="w-full h-full"
               >

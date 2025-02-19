@@ -12,7 +12,6 @@
       <h1 class="mt-5 text-4xl font-bold">{{ profile?.full_name }}</h1>
       <p class="mt-2 text-sm">{{ profile?.bio }}</p>
     </div>
-    <Button>Edit profile</Button>
   </div>
 </template>
 
