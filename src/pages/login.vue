@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { LoginForm } from '@/types/AuthForm'
 import { loginUser } from '@/utils/supabaseAuth'
+import { watchDebounced } from '@vueuse/core'
 
 const router = useRouter()
 const { serverError, streamErrors, handleServerError, handleLoginForm } = useFormErrors<LoginForm>()

@@ -4,6 +4,7 @@ import {
   type ResentProjects,
   type ResentTask,
 } from '@/utils/supabaseQueries'
+import { useMemoize } from '@vueuse/core'
 
 export const useDashboardStore = defineStore('dashboard-store', () => {
   const resentProjects = ref<ResentProjects | []>([])
