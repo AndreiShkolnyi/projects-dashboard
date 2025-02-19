@@ -73,28 +73,6 @@
         </Table>
       </div>
     </div>
-    <div class="flex-1">
-      <h2>Documents</h2>
-      <div class="table-container">
-        <p class="text-muted-foreground text-sm font-semibold px-4 py-3">
-          This project doesn't have documents yet...
-        </p>
-        <!-- <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead> Name </TableHead>
-              <TableHead> Visibility </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell> Lorem ipsum dolor sit amet. </TableCell>
-              <TableCell> Private </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table> -->
-      </div>
-    </div>
   </section>
 </template>
 
@@ -110,6 +88,12 @@ useHead({
     { name: 'description', content: 'Selected project info' },
     { property: 'og:title', content: 'Project Info' }
   ]
+})
+
+definePage({
+  meta: {
+    showBreadcrumbs: true,
+  }
 })
 
 const breadCrumbs: BreadCrumb[] = [

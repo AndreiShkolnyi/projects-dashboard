@@ -15,7 +15,7 @@ const toggleValue = () => {
 }
 </script>
 <template>
-  <div class="text-2xl cursor-pointer" @click="toggleValue">
+  <div class="text-2xl" :class="readonly ? 'cursor-default' : 'cursor-pointer'" @click="toggleValue">
     <Transition name="scale" mode="out-in">
       <Icon
         v-if="value === 'completed'"

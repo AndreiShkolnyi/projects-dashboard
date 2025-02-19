@@ -148,6 +148,7 @@ declare global {
   const useBroadcastChannel: (typeof import('@vueuse/core'))['useBroadcastChannel']
   const useBrowserLocation: (typeof import('@vueuse/core'))['useBrowserLocation']
   const useCached: (typeof import('@vueuse/core'))['useCached']
+  const useChatAi: typeof import('./src/composables/useChatApi')['useChatAi']
   const useClipboard: (typeof import('@vueuse/core'))['useClipboard']
   const useClipboardItems: (typeof import('@vueuse/core'))['useClipboardItems']
   const useCloned: (typeof import('@vueuse/core'))['useCloned']
@@ -383,6 +384,7 @@ declare module 'vue' {
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useAuthStore: UnwrapRef<typeof import('./src/stores/auth')['useAuthStore']>
     readonly useBreadcrumbStore: UnwrapRef<typeof import('./src/stores/breadcrumbs')['useBreadcrumbStore']>
+    readonly useChatAi: UnwrapRef<typeof import('./src/composables/useChatApi')['useChatAi']>
     readonly useCollabs: UnwrapRef<typeof import('./src/composables/collabs')['useCollabs']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>

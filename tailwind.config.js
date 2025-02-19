@@ -1,3 +1,4 @@
+import daisyui from 'daisyui'
 import animate from 'tailwindcss-animate'
 
 /** @type {import('tailwindcss').Config} */
@@ -90,5 +91,5 @@ module.exports = {
       },
     },
   },
-  plugins: [animate],
+  plugins: [animate, daisyui],
 }

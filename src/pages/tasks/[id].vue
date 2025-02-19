@@ -94,6 +94,12 @@ useHead({
   ]
 })
 
+definePage({
+  meta: {
+    showBreadcrumbs: true,
+  }
+})
+
 const tasksLoader = useTasksStore()
 const { task } = storeToRefs(tasksLoader)
 const { getTask, updateTask, deleteTask } = tasksLoader

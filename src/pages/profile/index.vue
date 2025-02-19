@@ -8,6 +8,7 @@
 import { useToggle } from '@vueuse/core'
 
 const { profile } = storeToRefs(useAuthStore())
+usePageStore().pageData.title = 'Your profile'
 
 const isEditable = ref(false)
 const toggle = useToggle(isEditable)

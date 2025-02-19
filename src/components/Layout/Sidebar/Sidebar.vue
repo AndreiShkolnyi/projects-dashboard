@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="flex flex-col h-screen gap-2 absolute bg-muted/95 transition-[width] duration-200 border-r"
+    class="flex flex-col h-screen w-44 gap-2 absolute bg-muted/95 transition-[width] duration-200 border-r"
     :class="{ 'hidden': !isOpen}"
   >
     <div class="flex h-fit items-center border-b p-2 lg:p-4 shrink-0 gap-1 justify-between" :class="{ 'flex-col': !isOpen }">

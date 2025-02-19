@@ -18,6 +18,12 @@ useHead({
   ]
 })
 
+definePage({
+  meta: {
+    showBreadcrumbs: true,
+  }
+})
+
 usePageStore().pageData.title = 'Tasks'
 
 const tasksLoader = useTasksStore()

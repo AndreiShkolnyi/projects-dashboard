@@ -19,6 +19,12 @@ useHead({
   ]
 })
 
+definePage({
+  meta: {
+    showBreadcrumbs: true,
+  }
+})
+
 const breadCrumbs: BreadCrumb[] = [
   { title: 'Home', to: '/' },
   { title: 'Projects', to: '/projects' },

@@ -23,12 +23,6 @@ const emit = defineEmits<{
       <AvatarImage :src="profile?.avatar_url || ''" alt="@radix-vue" />
       <AvatarFallback>{{ profile?.username }}</AvatarFallback>
     </Avatar>
-    <template v-if="!isEditable">
-      <p class="mt-2 text-gray-500">{{ `@${profile?.username}` }}</p>
-      <h1 class="mt-5 text-4xl font-bold">{{ profile?.full_name }}</h1>
-      <p class="mt-2 text-sm">{{ profile?.bio }}</p>
-      <Button @click="emit('toggle', true)">Edit profile</Button>
-    </template>
     <template v-if="isEditable">
       <FormKit v-if="profile" type="form" @submit="editProfile" submit-label="Edit Profile" :config="{
         validationVisibility: 'submit'
@@ -43,6 +37,12 @@ const emit = defineEmits<{
           <Button type="submit" variant="outline" size="lg" @click="handlers.submit">Submit changes</Button>
         </template>
       </FormKit>
+    </template>
+    <template v-else>
+      <p class="mt-2 text-gray-500">{{ `@${profile?.username}` }}</p>
+      <h1 class="mt-5 text-4xl font-bold">{{ profile?.full_name }}</h1>
+      <p class="mt-2 text-sm">{{ profile?.bio }}</p>
+      <Button @click="emit('toggle', true)">Edit profile</Button>
     </template>
   </div>
 </template>

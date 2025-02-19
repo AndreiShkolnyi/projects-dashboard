@@ -19,13 +19,6 @@
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-      <form class="relative h-fit w-full max-w-96">
-        <Icon
-          class="absolute top-[50%] translate-y-[-50%] left-2.5 text-muted-foreground"
-          icon="lucide:search"
-        ></Icon>
-        <Input class="w-full pl-8 bg-background" type="text" placeholder="Search ..." />
-      </form>
       <div class="flex justify-center items-center gap-1">
       <Button variant="ghost" @click="toggleDark()" class="w-8 h-8">
         <Transition name="scale" mode="out-in">
