@@ -5,7 +5,8 @@
       :to="link.to"
       exact-active-class="text-primary bg-muted"
       class="flex nav-link"
-        :class="{ 'justify-normal': isOpen, 'justify-center': !isOpen }"
+      :class="{ 'justify-normal': isOpen, 'justify-center': !isOpen }"
+      @click="emit('on-toggle')"
     >
       <Icon :icon="link.icon" />
       <span
@@ -43,7 +44,8 @@ interface LinkProps {
 defineProps<{ links: LinkProps[], isOpen: boolean }>()
 
 const emit = defineEmits<{
-  (event: 'on-click', type: string): void
+  (event: 'on-click', type: string): void,
+  (event: 'on-toggle'): void
 }>()
 
 </script>

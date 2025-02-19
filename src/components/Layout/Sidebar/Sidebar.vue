@@ -1,7 +1,7 @@
 <template>
   <aside
-    class="flex flex-col h-screen gap-2 border-r fixed bg-muted/40 transition-[width] duration-200"
-    :class="{ 'w-52': isOpen, 'w-24': !isOpen }"
+    class="flex flex-col h-screen gap-2 absolute bg-muted/95 transition-[width] duration-200 border-r"
+    :class="{ 'hidden': !isOpen}"
   >
     <div class="flex h-fit items-center border-b p-2 lg:p-4 shrink-0 gap-1 justify-between" :class="{ 'flex-col': !isOpen }">
       <Button variant="outline" size="icon" class="w-8 h-8" @click="emit('onToggle', !isOpen)">
@@ -22,13 +22,13 @@
       </DropdownMenu>
     </div>
 
-    <nav class="flex flex-col gap-2 justify-between h-full relative">
+    <nav class="flex flex-col gap-2 justify-between h-full relative" :class="{'hidden': !isOpen}">
       <div>
-        <SidebarLinks :links="sidebarNavigateLinks" @on-click="executeAction" :isOpen />
+        <SidebarLinks :links="sidebarNavigateLinks" @on-click="executeAction" @on-toggle="emit('onToggle', false)" :isOpen />
       </div>
 
       <div class="border-y text-center bg-background py-3">
-        <SidebarLinks :links="accountLinks" @on-click="executeAction" :isOpen />
+        <SidebarLinks :links="accountLinks" @on-click="executeAction" @on-toggle="emit('onToggle', false)" :isOpen />
       </div>
     </nav>
   </aside>
