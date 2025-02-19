@@ -16,7 +16,7 @@ npm install
 ```
 
 ## Используемые технологии:
-
+[![My Skills](https://skillicons.dev/icons?i=vue,tailwind,supabase,vite,pinia,ts,nodejs,git&theme=light)](https://skillicons.dev)
 1. Vue **3**
 2. Стилизация приложения с помощью Tailwind CSS и shadcn
 3. Faker JS для создания моковых данных для базы **9.5.0**
@@ -30,9 +30,6 @@ npm install
 11. Unplugin Vue Components **28.0.0**
 12. Unplugin Auto Import **19.0.0**
 13. Pinia **2.3.1**
-14. React-redux **8.0.4**
-15. Axios **0.27.2**
-16. React Router **6.4.1**
 17. TypeScript **5.7.3**
 18. Node **22.14.0**
 19. Работа с системой контроля версий Git
