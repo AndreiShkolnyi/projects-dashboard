@@ -1,8 +1,17 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <script setup lang="ts">
 import type { Tables } from 'database/types';
 
+interface FormData {
+  full_name: string
+  avatar_url: string
+  bio: string
+}
+
 const { profile } = defineProps<{ profile: Tables<'profiles'> | null, isEditable: boolean }>()
-const editProfile = (formData: any) => console.log(formData)
+
+const _profile = ref({ ...profile })
+const editProfile = (formData: FormData) => formData
 const emit = defineEmits<{
   (e: 'toggle', value: boolean): void
 }>()
@@ -24,13 +33,13 @@ const emit = defineEmits<{
       <FormKit v-if="profile" type="form" @submit="editProfile" submit-label="Edit Profile" :config="{
         validationVisibility: 'submit'
       }">
-        <FormKit type="text" name="full_name" id="name" label="Name" placeholder="Name" v-model="profile.full_name"
+        <FormKit type="text" name="full_name" id="name" label="Name" placeholder="Name" v-model="_profile.full_name"
           validation="required|length:1,255" />
         <FormKit type="text" name="avatar_url" id="avatar_url" label="Avatar" placeholder="Avatar"
-          v-model="profile.avatar_url" validation="required|length:1,255" />
-        <FormKit type="textarea" name="bio" id="description" label="Bio" placeholder="Your bio" v-model="profile.bio"
+          :model-value="_profile.avatar_url ?? undefined" validation="required|length:1,255" />
+        <FormKit type="textarea" name="bio" id="description" label="Bio" placeholder="Your bio" :model-value="_profile.bio ?? undefined"
           validation="length:0,500" />
-        <template #submit="{ node, handlers }">
+        <template #submit="{ handlers }">
           <Button type="submit" variant="outline" size="lg" @click="handlers.submit">Submit changes</Button>
         </template>
       </FormKit>

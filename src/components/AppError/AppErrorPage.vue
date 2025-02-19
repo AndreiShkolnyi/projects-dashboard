@@ -13,8 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import { useErrorStore } from '@/stores/error'
-
 const errorStore = useErrorStore()
 const router = useRouter()
 

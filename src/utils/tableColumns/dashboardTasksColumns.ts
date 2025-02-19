@@ -1,9 +1,9 @@
 import type { ColumnDef } from '@tanstack/vue-table'
-import type { TasksWithProjects } from '../supabaseQueries'
+import type { ResentTask } from '../supabaseQueries'
 import { RouterLink } from 'vue-router'
 import AppInPlaceEditStatus from '@/components/AppInPlaceEdit/AppInPlaceEditStatus.vue'
 
-export const resentTasksColumns: ColumnDef<TasksWithProjects[0]>[] = [
+export const resentTasksColumns: ColumnDef<ResentTask[0]>[] = [
   {
     accessorKey: 'name',
     header: () => h('div', { class: 'text-left' }, 'Name'),
@@ -15,20 +15,6 @@ export const resentTasksColumns: ColumnDef<TasksWithProjects[0]>[] = [
           class: 'text-left font-medium block w-full hover:text-blue-500',
         },
         () => row.getValue('name'),
-      )
-    },
-  },
-  {
-    accessorKey: 'projects',
-    header: () => h('div', { class: 'text-left text-nowrap' }, 'Project'),
-    cell: ({ row }) => {
-      return h(
-        RouterLink,
-        {
-          to: `/projects/${row.original.projects?.slug}`,
-          class: 'text-left font-medium hover:bg-muted block w-full hover:text-blue-500',
-        },
-        () => row.original.projects?.name,
       )
     },
   },

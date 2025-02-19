@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { useToggle } from '@vueuse/core'
 
 const { profile } = storeToRefs(useAuthStore())
 

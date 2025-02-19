@@ -18,9 +18,9 @@ const GuestLayout = defineAsyncComponent(
 )
 
 useHead({
-  title: 'Мой заголовок',
+  title: 'Your personal admin panel',
   meta: [
-    { name: 'description', content: 'This is your personal projects dashboard ' },
+    { name: 'description', content: 'This is your personal projects dashboard' },
     { property: 'og:title', content: 'Projects Dashboard' }
   ]
 })

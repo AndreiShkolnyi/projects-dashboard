@@ -138,7 +138,7 @@ const collabs = project.value?.collaborators
   : []
 </script>
 
-<style>
+<style scoped>
 th {
   @apply w-[100px];
 }

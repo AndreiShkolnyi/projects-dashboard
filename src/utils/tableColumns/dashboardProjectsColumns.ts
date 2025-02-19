@@ -1,9 +1,9 @@
 import { RouterLink } from 'vue-router'
 import type { ColumnDef } from '@tanstack/vue-table'
-import type { Projects } from '../supabaseQueries'
+import type { ResentProjects } from '../supabaseQueries'
 import AppInPlaceEditStatus from '@/components/AppInPlaceEdit/AppInPlaceEditStatus.vue'
 
-export const resentProjectsColumns: ColumnDef<Projects[0]>[] = [
+export const resentProjectsColumns: ColumnDef<ResentProjects[0]>[] = [
   {
     accessorKey: 'name',
     header: () => h('div', { class: 'text-left' }, 'Name'),

@@ -50,6 +50,7 @@
 
 <script setup lang="ts">
 const { profile } = storeToRefs(useAuthStore())
+import { useDark, useToggle } from '@vueuse/core'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)

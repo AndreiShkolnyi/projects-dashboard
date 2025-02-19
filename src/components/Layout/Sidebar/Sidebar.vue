@@ -75,7 +75,6 @@ watch(
     const shouldOpen = newWidth > 1024
     if (shouldOpen !== props.isOpen) {
       emit('onToggle', shouldOpen)
-      console.log('from watcher', shouldOpen)
     }
   }
 )

@@ -17,7 +17,6 @@ export default defineConfig({
       include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
       imports: [
         'vue',
-        '@vueuse/core',
         VueRouterAutoImports,
         {
           pinia: ['defineStore', 'storeToRefs', 'acceptHMRUpdate'],

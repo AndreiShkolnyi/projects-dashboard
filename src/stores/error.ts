@@ -20,6 +20,8 @@ export const useErrorStore = defineStore('error-store', () => {
     }
 
     activeError.value = error
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
     activeError.value.statusCode = customCode || 500
   }
 

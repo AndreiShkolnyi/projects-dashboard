@@ -36,7 +36,7 @@
 <script setup lang="ts">
 interface LinkProps {
   title: string
-  to: string
+  to?: string
   icon: string
 }
 

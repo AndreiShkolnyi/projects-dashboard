@@ -28,6 +28,8 @@ export const useTasksStore = defineStore('tasks-store', () => {
         if (JSON.stringify(ref.value) === JSON.stringify(data)) {
           return
         } else {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-ignore
           loaderFn.delete(key)
           if (!error && data) ref.value = data
         }
